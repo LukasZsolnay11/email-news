@@ -8,9 +8,10 @@ request = requests.get(url)
 content = request.json()
 
 body = ""
-for article in content["articles"]:
-    body = body + article["title"] + "\n"\
-    + article["description"] + 2*"\n"
+for article in content["articles"][:20]:
+    body = "Subject: Todays news" + "\n" + body + article["title"] + "\n"\
+    + article["description"] \
+    + "\n" + article["url"] + 2*"\n"
 
 body=body.encode("utf-8")
 send_email(message=body)
